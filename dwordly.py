@@ -1,17 +1,17 @@
 import json
 
-# Wczytanie słownika z pliku JSON
+# Loading a dictionary from a JSON file
 with open("dictionary.json", "r", encoding="utf-8") as file:
     words = json.load(file)
 
-# Przygotowanie słownika z zestawami słów dla każdej długości słowa
+# Preparing a dictionary with sets of words for each word length
 words_by_length = {length: set() for length in range(1, max(len(word) for word in words) + 1)}
 
 for word in words:
     word = word.strip().upper()
     words_by_length[len(word)].add(word)
 
-# Funkcja sprawdzająca, czy słowo jest ważne
+# A function that checks whether a word is valid
 def is_valid_word_optimized(word):
     return word.upper() in words_by_length[len(word)]
 
@@ -57,7 +57,7 @@ def find_path_to_one_letter_word(start_word):
     
     return None
 
-# Testowanie funkcji na przykładowym słowie
+# Testing
 example_word = "REELER"
 path_optimized = find_path_to_one_letter_word(example_word)
 print(path_optimized)
